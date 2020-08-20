@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %} Register {% endblock %}
+
+{% block style %}
+
+ #Register_Heading {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
+ }
+
+ ::placeholder {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ }
+ #User_Name {
+    <!-- background-color: lightgray; -->
+    border: none;
+}
+#User_Password {
+    <!-- background-color: lightgray; -->
+    border: none;
+}
+
+ {% endblock %}
+
+
+{% block body %}
+<br>
+<br>
+    <center>
+        <div id="Register_Heading">
+            <h2>Register</h2>
+        </div>
+    </center>
+<br>
+
+    <center>
+        <!-- NAME FIELD -->
+        <form name="Form" action="/register" onsubmit="return validateForm()" method="POST" >
+            <div class="form-group">
+                <input id="User_Name" name="user_name" type="text" placeholder="Name" onkeyup="checkText(this)">
+            </div>
+        
+        <!-- PASSWORD FIELD -->
+            <div class="form-group">
+                <input id="User_Password" name="user_password" type="password" placeholder="Password" onkeyup="checkText(this)">
+            </div>
+
+        <!-- PASSWORD FIELD -->
+            <div class="form-group">
+                <input id="Confirm_Password" name="confirm_password" type="password" placeholder="Confirm Password" onkeyup="checkText(this)">
+            </div>
+            <button id="Submit" class="btn btn-primary" type="submit">Register</button>
+        </form>
+</center>
+
+<script>
+    function validateForm() {
+      var name_form = document.forms["Form"]["user_name"].value;
+      
+    //  CHECKING IF USER NAME IS BLANK
+      if (name_form == "" || name_form == null) {
+        alert("Fill Out Form");
+        return false;
+      }
+
+    // CHECKING IF PASSWORD IS BLANK
+      var password_form = document.forms["Form"]["user_password"].value;
+      if (password_form == "" || password_form == null) {
+          alert("Fill Out Form")
+          return false;
+      }
+
+      // CHECKING IF CONFIRM PASSWORD IS BLANK
+      var confirm_form    = document.forms["Form"]["confirm_password"].value;
+      if (confirm_form == "" || confirm_form == null) {
+          alert("Fill Out Form")
+          return false;
+      }
+
+      // CHECKING IF PASSWORDS MATCH
+      if (password_form != confirm_form) {
+          alert("Your Passwords Do Not Match")
+          return false;
+      }
+
+
+
+    }
+    </script>
+{% endblock %}
+
+

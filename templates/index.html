@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block tile %} Home {% endblock %}
+
+{% block style %}
+#Logout_Button {
+  position: absolute;
+  transition: .5s ease;
+  top:2%;
+  right:2%;
+}
+#Inventory_Heading {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#Total {
+  font-weight: bold;
+}
+
+#Action_Button {
+  padding: 10px;
+}
+#Alert_Msg {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+{% endblock %}
+
+{% block body %}
+
+ <!-- ALERT MESSAGE -->
+
+ {% if alert == 'sort' %}
+
+  <center>
+    <div id="Alert_Msg" class="alert alert-primary" role="alert">Items Sorted</div>
+  </center>
+
+ {% elif alert == 'below' %}
+
+  <center>
+    <div id="Alert_Msg" class="alert alert-primary" role="alert">Items Below Inventory</div>
+  </center>
+
+ {% elif alert == 'above' %}
+
+  <center>
+    <div id="Alert_Msg" class="alert alert-primary" role="alert">Items Above Inventory</div>
+  </center>
+
+ {% elif alert == 'add' %}
+
+  <center>
+    <div id="Alert_Msg" class="alert alert-primary" role="alert">Item Added</div>
+  </center>
+
+ {% elif alert == 'delete' %}
+
+  <center>
+    <div id="Alert_Msg" class="alert alert-danger" role="alert">Item Deleted</div>
+  </center>
+
+ {% endif %}
+
+<center>
+  <br>
+    <h2 id="Inventory_Heading">Your Inventory</h2>
+    <form action="/logout">
+      <button id="Logout_Button" class="btn btn-primary">Log Out</button>
+  </form>
+
+<br>
+<br>
+    <table class="table table-striped" style="width:50%">
+        <tr>
+            <th>Item</th>
+            <th>Amount</th>
+        </tr>
+        {% for i in range(num_items) %}
+        <tr>
+           <td>{{ items[i][0] }}</td>
+           <td>{{ items[i][1] }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td id="Total">TOTAL</td>
+          <td>{{ total }}</td>
+        </tr>
+    </table>
+</center>
+<br>
+<!-- <br>
+<br> -->
+<!-- <br>
+<br> -->
+
+<!-- Example split danger button -->
+<div id="Action_Button" class="btn-group">
+    <button type="button" class="btn btn-secondary">Action</button>
+    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href={{ url_for('add') }}>Add Items</a>
+      <a class="dropdown-item" href={{ url_for('below_inventory') }}>Check Items Below Inventory</a>
+      <a class="dropdown-item" href={{ url_for('above_inventory') }}>Check Items Above Inventory</a>
+      <a class="dropdown-item" href={{ url_for('specific_inventory') }}>Check Items At A Specific Limit</a>
+      <a class="dropdown-item" href={{ url_for('sort_items') }}>Sort All Items</a>
+      <a class="dropdown-item" href={{ url_for('index') }}>View All Items</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href={{ url_for('delete_inventory') }}>Delete Item</a>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+{% endblock %}

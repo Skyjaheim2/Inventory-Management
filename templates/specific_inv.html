@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %} Below Inventory {% endblock %}
+
+
+{% block style %}
+#Specific_Heading {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
+}
+::placeholder {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ }
+
+{% endblock %}
+
+{% block body %}
+<br>
+    <center>
+        <div id="Specific_Heading">
+            <h2>Items At A Specific Limit</h2>
+        </div>
+    </center>
+<br>
+
+<center>
+    <form name="Form" action="/specific" onsubmit="return validateForm()" method="POST" >
+    <!-- Amount FIELD -->
+        <div class="form-group">
+            <input id="User_Amount" name="user_amount" type="text" placeholder="Inventory Limit">
+        </div>
+
+        <button id="Submit" class="btn btn-primary" type="submit">Check</button>
+    </form>
+</center>
+
+<script>
+    function validateForm() {
+
+    // CHECKING IF AMOUNT IS BLANK
+      var amount_form = document.forms["Form"]["user_amount"].value;
+      if (amount_form == "" || amount_form == null) {
+          alert("Enter All Fields")
+          return false;
+      }
+    
+    // CHECKING IF AMOUNT IS NOT A NUMBER
+    amount_form = Number(amount_form);
+    if (Number.isInteger(amount_form) == false) {
+        alert ("Limit Must Be A Number")
+        return false;
+    }
+
+    }
+    </script>
+   
+    
+
+{% endblock %}

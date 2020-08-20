@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+
+    {% block stylesheet %}
+    {% endblock %}
+
+    <style>
+        {% block style %}
+        {% endblock %}
+        
+        body {
+            /* background-color: cadetblue; */
+        }
+       
+        #Heading {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            color: black;
+            /* background-color:darkgoldenrod; */
+            padding: 0%;
+            height: 60px;
+        }
+        #Heading_Color {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: 32px;
+            color: black;
+            background-color:darkgoldenrod;
+            height: 60px;
+        }
+            
+
+    </style>
+</head>
+
+
+<body>
+    <div id="Heading_Color"> Inventory Management</div>
+
+    
+    <!-- <h1 id="Heading">Inventory Management</h1> -->
+
+
+    {% block body %}
+
+    {% endblock %}
+
+</body>
+</html>

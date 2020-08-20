@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %} Change Password {% endblock %}
+
+{% block style %}
+#Change_Heading {
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+::placeholder {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#Error_Msg {
+    color: red;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+{% endblock %}
+
+{% block body %}
+
+<br>
+<center>
+    <div id="Change_Heading">
+        <h2>Change Password</h2>
+    </div>
+</center>
+<br>
+<br>
+
+<center>
+    
+    <form  name="Form"  action="/change_password" onsubmit="return validateForm()" method="POST">
+        <!-- NAME FIELD -->
+        <div class="form-group">
+            <input name="user_name" type="text" placeholder="Username">
+        </div>
+
+        <!-- PREVIOUS PASSWORD FIELD -->
+        <div class="form-group">
+            <input  name="pre_password" type="password" placeholder="Previous Password">
+        </div>
+
+        <!-- NEW PASSWORD FIELD -->
+        <div class="form-group">
+            <input name="new_password" type="password" placeholder="New Password">
+        </div>
+        <button class="btn btn-primary" type="submit">Change Password</button>
+    </form>
+</center>
+<br>
+
+<!-- ERROR MESSAGE -->
+<center>
+    <div id="Error_Msg">
+        {{ message }}
+    </div>
+</center>
+
+<script>
+   
+    function validateForm() {
+         //  CHECKING FOR BLANK NAME
+        var name_form = document.forms["Form"]["user_name"].value;
+        if (name_form == "" || name_form == null) {
+            alert("Enter Your Username");
+            return false;
+        }
+         //  CHECKING FOR BLANK PRE PASSWORD
+         var pre_pwd_form = document.forms["Form"]["pre_password"].value;
+         if (pre_pwd_form == "" || pre_pwd_form == null) {
+             alert("Enter Your Previous Password");
+             return false;
+         }
+         // CHECKING FOR BLANK NEW PASSWORD
+         var new_password = document.forms["Form"]["new_password"].value;
+         if (new_password == "" || new_password == null) {
+             alert("Enter Your New Password");
+             return false;
+         }
+
+
+
+    }
+    
+</script>
+
+{% endblock %}

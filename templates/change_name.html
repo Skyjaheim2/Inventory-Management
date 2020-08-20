@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+
+{% block title %} Forgot Username {% endblock %}
+
+
+{% block style %}
+::placeholder {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ }
+#Change_Heading {
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#Wrong_Pwd {
+    color: red;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+{% endblock %}
+
+{% block body %}
+
+<br>
+<center>
+    <div id="Change_Heading"><h2>Change Username</h2></div>
+</center>
+
+<br>
+<center>
+    <form name="Form" action="/change_username" onsubmit="return validateForm()" method="POST">
+        <!-- PREVIOUS NAME FIELD -->
+        <div class="form-group">
+            <input name="pre_user_name" type="text" placeholder="Previous Username">
+        </div>
+
+        <!-- NEW NAME FIELD -->
+        <div class="form-group">
+            <input name="user_name" type="text" placeholder="New Username">
+        </div>
+
+        <!-- PASSWORD FIELD -->
+        <div class=form-group>
+            <input name="user_password" type="password" placeholder="Password" >
+        </div>
+
+        <button class="btn btn-primary" type="submit">Change</button>
+    </form>
+</center>
+
+<!-- MESSAGE TO SHOW IF PASSWORD IS WRONG -->
+<br>
+<center>
+    <div id="Wrong_Pwd">
+        {{ message }}
+    </div>
+</center>
+
+<script>
+    function validateForm() {
+        // CHECKING FOR NO PREVIOUS NAME
+        var pre_name_form = document.forms["Form"]["pre_user_name"].value;
+
+        if (pre_name_form == "" || pre_name_form == null) {
+            alert("Enter Your Previous Username")
+            return false;
+        }
+
+        // CHECKING FOR NO USER NAME
+        var name_form = document.forms["Form"]["user_name"].value;
+
+        if (name_form == "" || name_form == null) {
+            alert("Enter Your New Username");
+            return false;
+        }
+
+        //  CHECKING FOR NO PASSWORD
+        var pwd_form = document.forms["Form"]["user_password"].value;
+
+        if (pwd_form == "" || pwd == null) {
+            alert("Enter Password");
+            return false;
+        }
+
+        
+    }
+</script>
+
+{% endblock %}

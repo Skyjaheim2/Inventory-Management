@@ -1,0 +1,80 @@
+{% extends "layout.html" %}
+
+{% block title %} Add Item {% endblock %}
+
+
+{% block style %}
+
+#Add_Heading {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black;
+ }
+
+ ::placeholder {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+ }
+ #User_Item {
+    <!-- background-color: lightgray; -->
+    border: none;
+}
+#User_Amount {
+    <!-- background-color: lightgray; -->
+    border: none;
+}
+
+{% endblock %}
+
+
+{% block body %}
+<br>
+    <center>
+        <div id="Add_Heading">
+            <h2>Add Item</h2>
+        </div>
+</center>
+<br>
+
+<center>
+    <!-- NAME FIELD -->
+    <form name="Form" action="/add" onsubmit="return validateForm()" method="POST" >
+        <div class="form-group">
+            <input id="User_Item" name="user_item" type="text" placeholder="Name">
+        </div>
+
+    <!-- Amount FIELD -->
+        <div class="form-group">
+            <input id="User_Amount" name="user_amount" type="text" placeholder="Amount">
+        </div>
+
+        <button id="Submit" class="btn btn-primary" type="submit">Add</button>
+    </form>
+</center>
+
+<script>
+    function validateForm() {
+      var name_form = document.forms["Form"]["user_item"].value;
+
+    //  CHECKING IF USER ITEM IS BLANK
+      if (name_form == "" || name_form == null) {
+        alert("Enter All Fields");
+        return false;
+      }
+
+    // CHECKING IF AMOUNT IS BLANK
+      var amount_form = document.forms["Form"]["user_amount"].value;
+      if (amount_form == "" || amount_form == null) {
+          alert("Enter All Fields")
+          return false;
+      }
+    
+    // CHECKING IF AMOUNT IS NOT A NUMBER
+    amount_form = Number(amount_form);
+    if (Number.isInteger(amount_form) == false) {
+        alert ("Amount Must Be A Number")
+        return false;
+    }
+
+    }
+    </script>
+
+{% endblock %}
