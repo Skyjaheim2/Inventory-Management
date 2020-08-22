@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request, redirect, session
 from flask_session import Session
 from datetime import date
@@ -7,7 +8,10 @@ import mysql.connector
 current_date = date.today()
 now = current_date.strftime("%B %d, %Y")
 
-mydb = mysql.connector.connect(host="localhost", user="root", passwd="jaheimSQL18", database="inventory")
+db_user = os.environ.get("DB_USER")
+db_password = os.environ.get('DB_PASSWORD')
+
+mydb = mysql.connector.connect(host="localhost", user=db_user, passwd=db_password, database="inventory")
 
 db = mydb.cursor()
 
